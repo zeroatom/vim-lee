@@ -2,6 +2,8 @@ let g:ldoc_authorName = "lee"
 
 " 新建.sh .lua等文件自动调用SetTitle函数
 autocmd BufNewFile *.sh exec ":call SetTitle()"
+
+autocmd BufNewFile *.py exec ":call SetPyTitle()"
  
 function SetComment_sh()
     call setline(3, "#================================================================") 
@@ -22,6 +24,14 @@ func SetTitle()
         call setline(2, "")
         call SetComment_sh()
     endif
+
+    autocmd BufNewFile * normal G                                                                            
+endfunc
+
+function SetPyTitle()
+    call setline(1, "#!/user/bin/python")
+    call setline(2, "# -*- coding: utf-8 -*-")
+    call SetComment_sh()
 
     autocmd BufNewFile * normal G                                                                            
 endfunc
